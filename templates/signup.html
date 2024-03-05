@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sign Up</title>
+    
+    {% include 'bootstrap.html' %}
+</head>
+
+<body>
+    <img src="static/signupbg.jpg" class="img-fluid" alt="Phone image">
+    <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 overlay-text" style="position: absolute;
+                    top: 60%;
+                    left: 60%;
+                    transform: translate(-50%, -50%);
+                    color: black;
+                    font-size: 24px;
+                    text-align: center;">
+                    
+        <form name="signup_form" method='POST'>
+            <h1 class="text-center lead mb-4" style="font-size: 32px; text-color:rgb(27, 23, 23);">CREATE YOUR ACCOUNT</h1>
+            <div class="form-outline mb-4">
+                <input type="text" name="firstname" class="form-control form-control-lg" placeholder="Enter Your First Name" />
+                <label class="form-label" name="firstname" for="form1Example13">First Name</label>
+            </div>
+            <div class="form-outline mb-4">
+                <input type="text" name="lastname" class="form-control form-control-lg" placeholder="Enter Your Last Name" />
+                <label class="form-label" name="lastname" for="form1Example13">Last Name</label>
+            </div>
+            <div class="form-outline mb-4">
+                <input type="text" name="username" class="form-control form-control-lg" placeholder="Provide Username" />
+                <label class="form-label" name="username" for="form1Example13">Username</label>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <input type="password" name="password" class="form-control form-control-lg"
+                    placeholder="Enter Strong Password" />
+                <label class="form-label" name="password" for="form1Example23">Password</label>
+            </div>
+            <button type="submit" class="btn btn-dark btn-lg btn-block" id="signup-btn">Create Account</button>
+            {% if success_message %}
+            <div class="alert alert-success" role="alert">
+                {{ success_message }}
+            </div>
+        {% endif %}
+            <div class="divider d-flex align-items-center my-4">
+                <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+            </div>
+
+            <a class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998" href="#!" role="button">
+                <i class="fab fa-facebook-f me-2"></i>Continue with Facebook
+            </a>
+            <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee" href="#!" role="button">
+                <i class="fab fa-twitter me-2"></i>Continue with Twitter</a>
+
+        </form>
+    </div>
+</body>
+
+</html>
