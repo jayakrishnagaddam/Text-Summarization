@@ -20,7 +20,7 @@ def login():
         password = request.form.get('password')
         user_data = mongo.db.users.find_one({'username': username, 'password': password})
         if user_data:
-            firstname = user_data['first_name']  # Corrected syntax here
+            firstname = user_data['first_name']
             session['username'] = username
             return redirect(url_for('homepage', name=firstname))
         else:
