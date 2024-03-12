@@ -1,60 +1,70 @@
-import pandas as pd
-import numpy as np
-from keras.preprocessing.text import Tokenizer
-from keras.preprocessing.sequence import pad_sequences
-from keras.models import Sequential
-from keras.layers import Embedding, LSTM, Dense, AdditiveAttention
+from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask_pymongo import PyMongo
 
-# Load data
-train_df = pd.read_csv("train1.csv")
-test_df = pd.read_csv("test1.csv")
-val_df = pd.read_csv("validation1.csv")
+app = Flask(__name__)
+app.config["SECRET_KEY"] = "1234"
+app.config["MONGO_URI"] = "mongodb+srv://2100090162:manigaddam@deepsheild.kzgpo9p.mongodb.net/textsummarizationsDB"
+mongo = PyMongo(app)
 
-# Concatenate train, test, and validation datasets for preprocessing
-full_df = pd.concat([train_df, test_df, val_df], ignore_index=True)
+@app.route('/')
+def index():
+    return render_template("index.html")
 
-# Tokenization for input text
-tokenizer_input = Tokenizer()
-tokenizer_input.fit_on_texts(full_df['article'])
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        user_data = mongo.db.users.find_one({'username': username, 'password': password})
+        if user_data:
+            firstname = user_data['first_name']
+            session['username'] = username
+            return redirect(url_for('homepage', name=firstname))  # Passing firstname as parameter
+        else:
+            error = 'Invalid username or password'
 
-# Tokenization for target summaries
-tokenizer_target = Tokenizer()
-tokenizer_target.fit_on_texts(train_df['highlights'])
+    return render_template('login.html', error=error)
 
-# Pad sequences for input text
-max_len_input = 121  # adjust this based on your text length distribution
-train_sequences_input = tokenizer_input.texts_to_sequences(train_df['article'])
-train_padded_input = pad_sequences(train_sequences_input, maxlen=max_len_input, padding='post')
+@app.route('/homepage/<name>')
+def homepage(name):
+    return render_template('homepage.html', name=name)
 
-# Pad sequences for target summaries
-max_len_target = max(len(seq) for seq in tokenizer_target.texts_to_sequences(train_df['highlights']))
-train_sequences_target = tokenizer_target.texts_to_sequences(train_df['highlights'])
-train_padded_target = pad_sequences(train_sequences_target, maxlen=max_len_target, padding='post')
 
-# Define model
-model = Sequential()
-model.add(Embedding(input_dim=len(tokenizer_input.word_index) + 1, output_dim=100, input_length=max_len_input))
-model.add(LSTM(100, return_sequences=True))
+@app.route('/careers')
+def careers():
+    return render_template('careers.html')
 
-# Output layer with the correct activation function
-# Output layer with the correct activation function
-model.add(Dense(len(tokenizer_target.word_index) + 1, activation='softmax'))
+@app.route('/localmarkets')
+def localmarkets():
+    return render_template('localmarkets.html')
 
-# Compile model with appropriate loss function
-model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
-# Train model
-model.fit(train_padded_input, train_padded_target, epochs=10, batch_size=64, validation_split=0.2)
+@app.route('/logout')
+def logout():
+    session.pop('username', None)  
+    flash('You have been logged out', 'success') 
+    return redirect(url_for('login'))
 
-def generate_summary(new_text):
-    new_text_sequence = tokenizer_input.texts_to_sequences([new_text])
-    new_text_padded = pad_sequences(new_text_sequence, maxlen=max_len_input, padding='post')
-    predicted_summary_probs = model.predict(new_text_padded)[0]  # Get predictions for the first sequence in the batch
-    predicted_summary_indices = [np.argmax(prob) for prob in predicted_summary_probs]
-    predicted_summary_words = [word for word, index in tokenizer_target.word_index.items() if index in predicted_summary_indices]
-    predicted_summary = ' '.join(predicted_summary_words)
-    return predicted_summary
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        user_data = {
+            'first_name': request.form.get('firstname'),
+            'last_name': request.form.get('lastname'),
+            'username': request.form.get('username'),
+            'password': request.form.get('password')
+        }
 
-# Example usage
-new_text = "your text goes here..."
-predicted_summary = generate_summary(new_text)
-print(predicted_summary)
+        mongo.db.users.insert_one(user_data)
+
+        flash('SIGN UP SUCCESSFULL...YOU CAN NOW LOGIN HERE...', 'success')  # Flash success message
+        return redirect(url_for('login'))
+
+    return render_template('signup.html')
+
+@app.route('/contactus')
+def contactus():
+    return render_template('contactus.html')
+    
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", debug=True)
