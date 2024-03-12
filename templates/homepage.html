@@ -16,20 +16,23 @@
         margin: 0;
         padding: 0;
     }
-    
+    #textid{
+        padding-top: 20%;
+        padding-left: 10%;
+
+    }
 
     
     .content {
-        padding: 5px;
-        box-sizing: border-box;
-        overflow-y: scroll;
-        overflow: hidden; 
+        
+        padding-top: 2%; 
         height: 100vh;
     }
     
     /* Left Sidebar */
     .col-md-2.bg-light.left-sidebar {
-        overflow-y: hidden; /* Hide vertical scrolling for the left sidebar */
+        overflow-y: fixed;
+         /* Hide vertical scrolling for the left sidebar */
     }
     
     /* Style the list of contents */
@@ -65,6 +68,7 @@
         margin-left: 24px;
     }
     
+    
     </style>
 </head>
 <body>
@@ -72,7 +76,7 @@
         <div class="row">
             
             <div class="col-md-2 bg-light left-sidebar">
-                <h2 class="mt-4" style="position: relative; left: 4%;">Control Bar</h2>
+                <h2 class="mt-4" style="position: relative; left: 8%;">Control Bar</h2>
                 <div class="mt-3">
                     <h5>Welcome {{name}} !</h5>
                     <ul id="rightid">
@@ -103,6 +107,37 @@
             </div>
             <!-- Content Area -->
             <div class="col-md-8 content">
+                <h2 class="text-center" style="position:relative; left: 4%;">Welcome to Text Summarizer</h2>
+                <div class="container">
+                    <div class="row" id="textid">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label style="font-size: 24px;" for="inputText">Enter text to Summarize</label>
+                                <textarea class="form-control" id="inputText" rows="10" placeholder="Type or paste your text here..."></textarea>
+                                <button id="summarizeBtn" class="mt-4 btn btn-primary btn-lg">Summarize</button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label style="font-size: 24px;" for="summarizedText">Summarized Text</label>
+                                <textarea class="form-control" id="summarizedText" rows="10" readonly></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <script>
+                    document.getElementById('summarizeBtn').addEventListener('click', function () {
+                        // Fetch input text
+                        var inputText = document.getElementById('inputText').value;
+                        
+                        // Perform summarization (you can replace this with your summarization logic)
+                        var summarizedText = summarize(inputText); // Placeholder function
+                        
+                        // Update summarized text area
+                        document.getElementById('summarizedText').value = summarizedText;
+                    });
+                </script>
                 
             </div>
             
