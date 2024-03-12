@@ -1,15 +1,116 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>
-            Text Star
-        </title>
-        {%include 'bootstrap.html'%}
-    </head>
-    <body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summarizer</title>
+   {%include 'bootstrap.html'%}
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
         
-        <h1 class="text-center">
-            Welcome to Text Summarization
-        </h1>
-    </body>
+    
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    
+
+    
+    .content {
+        padding: 5px;
+        box-sizing: border-box;
+        overflow-y: scroll;
+        overflow: hidden; 
+        height: 100vh;
+    }
+    
+    /* Left Sidebar */
+    .col-md-2.bg-light.left-sidebar {
+        overflow-y: hidden; /* Hide vertical scrolling for the left sidebar */
+    }
+    
+    /* Style the list of contents */
+    .contents-list {
+        list-style-type: none;
+    }
+    
+    .contents-list li {
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+    
+    /* Style links in the list */
+    .contents-list a {
+        text-decoration: none;
+        color: #333;
+    }
+    
+    .contents-list a:hover {
+        text-decoration:underline;
+    }
+    
+    .upgrade-item {
+        border-bottom: 1px solid #ccc; /* Add a border-bottom to create a line */
+    }
+    .a{
+        text-decoration: none;
+        font-size: 13px;
+        
+    }
+    #rightid {
+        list-style-type: none;
+        margin-left: 24px;
+    }
+    
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            
+            <div class="col-md-2 bg-light left-sidebar">
+                <h2 class="mt-4" style="position: relative; left: 4%;">Control Bar</h2>
+                <div class="mt-3">
+                    <h5>Welcome {{name}} !</h5>
+                    <ul id="rightid">
+                        <li class="mt-3">
+                            <a style="color: black;" href="#">Home</a>
+                        </li>
+                        <li class="mt-3">
+                            <a style="color: black;" href="#">About</a>
+                        </li>
+                        <li class="mt-3">
+                            <a style="color: black;" href="#">Careers</a>
+                        </li>
+                        <li class="mt-3">
+                            <a style="color: black;" href="#">Contact Us</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                <div style="position: absolute; top: 85%;">
+                    <li  id="rightid" class="upgrade-item"></li>
+                        <li class=" mt-4 mb-4">
+                            <a href="{{url_for('logout')}}" class="" style="text-decoration: none; color:black;">Log Out</a>
+                        </li>
+                    <p style="font-size: 12px; text-decoration: none; color:black;">
+                        © 2023 Copyright : Jaya Krishna Gaddam
+                    </p>
+                    </div>
+            </div>
+            <!-- Content Area -->
+            <div class="col-md-8 content">
+                
+            </div>
+            
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>
