@@ -30,7 +30,9 @@ def login():
 def homepage(name):
     return render_template('homepage.html', name=name)
 
-
+@app.route('/home')
+def home():
+    return render_template('home.html')
 @app.route('/careers')
 def careers():
     return render_template('careers.html')
