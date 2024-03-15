@@ -7,6 +7,9 @@ app.config["SECRET_KEY"] = "1234"
 app.config["MONGO_URI"] = "mongodb+srv://2100090162:manigaddam@deepsheild.kzgpo9p.mongodb.net/textsummarizationsDB"
 mongo = PyMongo(app)
 
+@app.route('/projects')
+def projects():
+    return render_template('projects.html')
 
 @app.route('/summarize', methods=['POST'])
 def summarize():
