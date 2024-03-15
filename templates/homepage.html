@@ -136,6 +136,7 @@
                             <div class="loader mx-auto mt-2"></div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
             <!-- Bootstrap JS -->
@@ -144,29 +145,31 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
             <!-- Summarizer Script -->
             <script>
-                $(document).ready(function() {
-                    $('#summarizeBtn').click(function() {
-                        var inputText = $('#inputText').val();
-                        if (inputText.trim() !== '') {
-                            $('#summarizedText').val(''); // Clear previous result
-                            $('.loader').show(); // Show loader
-                            $.ajax({
-                                type: 'POST',
-                                url: '/summarize', // Replace with your endpoint
-                                data: { text: inputText },
-                                success: function(response) {
-                                    $('#summarizedText').val(response);
-                                },
-                                complete: function() {
-                                    $('.loader').hide(); // Hide loader
-                                }
-                            });
-                        } else {
-                            alert('Please enter some text to summarize.');
-                        }
-                    });
+            $(document).ready(function() {
+                $('#summarizeBtn').click(function() {
+                    var inputText = $('#inputText').val();
+                    if (inputText.trim() !== '') {
+                        $('#summarizedText').val(''); // Clear previous result
+                        $('.loader').show(); // Show loader
+                        $.ajax({
+                            type: 'POST',
+                            url: '/summarize', // Flask endpoint
+                            data: { text: inputText },
+                            success: function(response) {
+                                console.log(response); // Log the response
+                                $('#summarizedText').val(response);
+                            },
+                            complete: function() {
+                                $('.loader').hide(); // Hide loader
+                            }
+                        });
+                    } else {
+                        alert('Please enter some text to summarize.');
+                    }
                 });
+            });
             </script>
+
         </div>
     </div>
 </body>
