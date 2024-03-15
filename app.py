@@ -15,16 +15,9 @@ def summarize():
     return jsonify(summarized_text=summarized_text)
 
 def summarize_text(text):
-    # Load pre-trained summarization pipeline
     summarization_pipeline = pipeline("summarization", model="t5-small", tokenizer="t5-small")
-
-
-    # Generate summary
     summary = summarization_pipeline(text, max_length=300, min_length=2, do_sample=False)
-
-    # Extract summarized text
     summarized_text = summary[0]['summary_text']
-    
     return summarized_text
 
 @app.route('/')

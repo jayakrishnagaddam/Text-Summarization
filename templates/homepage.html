@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
     <style>
+        /* Custom Styles */
         .a {
             text-decoration: none;
             color: black;
@@ -25,6 +26,7 @@
         .left-sidebar {
             overflow-y: auto;
             height: 100vh;
+            background-color: antiquewhite;
         }
 
         #textid {
@@ -113,7 +115,7 @@
             <!-- Content Area -->
             <div class="col-md-10 content" style="position: relative; right: 3%;">
                 <div class="text-center" style="padding-top: 0px;">
-                    <p class=" mb-0" style="font-size:18px;"> <b>Unveiling Summarizer, Your AI Powered Text Summarization System.</b></p>
+                    <p class="mb-0" style="font-size:18px;"><b>Unveiling Summarizer, Your AI Powered Text Summarization System.</b></p>
                     <p class="text-center mt-2 container mb-4" style="font-size: 14px;">Your go-to tool for condensing lengthy 
                         texts into concise summaries. With advanced algorithms, we deliver quick and accurate summaries, saving 
                         you time and effort. Whether it's articles, reports, or documents, our summarizer extracts key points 
@@ -151,56 +153,53 @@
                 </div>
                 
             </div>
-            
-
-
-
-            <!-- Bootstrap JS -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-            <!-- Summarizer Script -->
-            <script>
-            $(document).ready(function() {
-                $('#summarizeBtn').click(function() {
-                    var inputText = $('#inputText').val();
-                    if (inputText.trim() !== '') {
-                        $('#summarizedText').val(''); // Clear previous result
-                        $('#progressBar').css('width', '0%'); // Reset progress bar
-                        $('.progress').show(); // Show progress bar
-                        $.ajax({
-                            type: 'POST',
-                            url: '/summarize', // Flask endpoint
-                            data: { text: inputText },
-                            xhr: function() {
-                                var xhr = new window.XMLHttpRequest();
-                                // Upload progress
-                                xhr.upload.addEventListener("progress", function(evt) {
-                                    if (evt.lengthComputable) {
-                                        var percentComplete = evt.loaded / evt.total;
-                                        $('#progressBar').css('width', percentComplete * 100 + '%');
-                                    }
-                                }, false);
-                                return xhr;
-                            },
-                            success: function(response) {
-                                // Parse the JSON response and extract the summarized text
-                                var summarizedText = response.summarized_text;
-                                // Set the extracted text to the summarizedText textarea
-                                $('#summarizedText').val(summarizedText);
-                            },
-                            dataType: 'json', // Expect JSON response
-                            complete: function() {
-                                $('.progress').hide(); // Hide progress bar
-                            }
-                        });
-                    } else {
-                        alert('Please enter some text to summarize.');
-                    }
-                });
-            });
-            </script>
         </div>
     </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Summarizer Script -->
+    <script>
+    $(document).ready(function() {
+        $('#summarizeBtn').click(function() {
+            var inputText = $('#inputText').val();
+            if (inputText.trim() !== '') {
+                $('#summarizedText').val(''); // Clear previous result
+                $('#progressBar').css('width', '0%'); // Reset progress bar
+                $('.progress').show(); // Show progress bar
+                $.ajax({
+                    type: 'POST',
+                    url: '/summarize', // Flask endpoint
+                    data: { text: inputText },
+                    xhr: function() {
+                        var xhr = new window.XMLHttpRequest();
+                        // Upload progress
+                        xhr.upload.addEventListener("progress", function(evt) {
+                            if (evt.lengthComputable) {
+                                var percentComplete = evt.loaded / evt.total;
+                                $('#progressBar').css('width', percentComplete * 100 + '%');
+                            }
+                        }, false);
+                        return xhr;
+                    },
+                    success: function(response) {
+                        // Parse the JSON response and extract the summarized text
+                        var summarizedText = response.summarized_text;
+                        // Set the extracted text to the summarizedText textarea
+                        $('#summarizedText').val(summarizedText);
+                    },
+                    dataType: 'json', // Expect JSON response
+                    complete: function() {
+                        $('.progress').hide(); // Hide progress bar
+                    }
+                });
+            } else {
+                alert('Please enter some text to summarize.');
+            }
+        });
+    });
+    </script>
 </body>
 </html>
