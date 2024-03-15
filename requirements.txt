@@ -4,3 +4,4 @@ flask-pymongo
 transformers
 pipeline
 Tensorflow
+PyTorch
