@@ -2,3 +2,5 @@ flask
 gunicorn
 flask-pymongo
 transformers
+tensorflow==2.7.0
+torch==1.10.0
