@@ -20,7 +20,7 @@ def summarize_text(text):
 
 
     # Generate summary
-    summary = summarization_pipeline(text, max_length=100, min_length=2, do_sample=False)
+    summary = summarization_pipeline(text, max_length=300, min_length=2, do_sample=False)
 
     # Extract summarized text
     summarized_text = summary[0]['summary_text']

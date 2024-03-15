@@ -94,12 +94,12 @@
                             <a class="btn btn-light" style="color: black;" href="#">Careers</a>
                         </li>
                         <li id="liid" class="mt-3">
-                            <a class="btn btn-light" style="color: black;" href="#">Contact Us</a>
+                            <a class="btn btn-light" style="color: black;" href="{{url_for('contactus')}}">Contact Us</a>
                         </li>
                     </ul>
                 </div>
                 
-                <div class="text-center mb-4" style="position: relative; top: 40%;">
+                <div class="text-center mb-4" style="position: relative; top: 43%;">
                     <p class="upgrade-item"></p>
                     <ul>
                         <li class="mt-2">
@@ -111,30 +111,50 @@
             </div>
         
             <!-- Content Area -->
-            <div class="col-md-10 content">
-                <h2 class="text-center mt-2">Welcome to Text Summarizer</h2>
-                <div class="row" id="textid">
+            <div class="col-md-10 content" style="position: relative; right: 3%;">
+                <div class="text-center" style="padding-top: 0px;">
+                    <p class=" mb-0" style="font-size:18px;"> <b>Unveiling Summarizer, Your AI Powered Text Summarization System.</b></p>
+                    <p class="text-center mt-2 container mb-4" style="font-size: 14px;">Your go-to tool for condensing lengthy 
+                        texts into concise summaries. With advanced algorithms, we deliver quick and accurate summaries, saving 
+                        you time and effort. Whether it's articles, reports, or documents, our summarizer extracts key points 
+                        efficiently. Simplify your reading experience and grasp the essence of any text effortlessly with our 
+                        Text Summarizer</p>
+                </div>
+                 <div class="row" id="textid">
                     <div class="col">
                         <div class="form-group">
-                            <label for="inputText">Enter text to Summarize</label>
+                            <label class="mt-0" for="inputText">Enter text to Summarize :</label>
                             <textarea class="form-control" id="inputText" rows="12" placeholder="Type or paste your text here..." aria-label="Input Text"></textarea>
                             <button id="summarizeBtn" class="mt-4 btn btn-warning">Summarize</button>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
-                            <label for="summarizedText">Summarized Text</label>
+                            <label for="summarizedText">Summarized Text :</label>
                             <textarea class="form-control" id="summarizedText" rows="12" 
                             readonly aria-label="Summarized Text"></textarea>
-                            <!-- Font Awesome spinner -->
-                            <div class="loader mx-auto mt-2">
-                                <i class="fas fa-spinner fa-spin"></i>
+                            <!-- Bootstrap progress bar -->
+                            <div class="progress mt-4" style="height: 20px;">
+                                <div id="progressBar" class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="text-center mt-4" style="position: absolute; bottom: 4%;">
+                        <div class="upgrade-item mb-2"></div>
+                        <h4 class="" style="font-size: 14px; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"><b>Disclaimer:</b> <p>The summarized text provided by this tool is generated algorithmically and may not
+                             capture all nuances or context present in the original text.
+                            "Users should review and verify the summarized content for accuracy and completeness before 
+                            relying on it for any purpose..."</p></h4>
+                    </div>
                     
                 </div>
+                
             </div>
+            
+
+
+
             <!-- Bootstrap JS -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -146,11 +166,23 @@
                     var inputText = $('#inputText').val();
                     if (inputText.trim() !== '') {
                         $('#summarizedText').val(''); // Clear previous result
-                        $('.loader').show(); // Show loader
+                        $('#progressBar').css('width', '0%'); // Reset progress bar
+                        $('.progress').show(); // Show progress bar
                         $.ajax({
                             type: 'POST',
                             url: '/summarize', // Flask endpoint
                             data: { text: inputText },
+                            xhr: function() {
+                                var xhr = new window.XMLHttpRequest();
+                                // Upload progress
+                                xhr.upload.addEventListener("progress", function(evt) {
+                                    if (evt.lengthComputable) {
+                                        var percentComplete = evt.loaded / evt.total;
+                                        $('#progressBar').css('width', percentComplete * 100 + '%');
+                                    }
+                                }, false);
+                                return xhr;
+                            },
                             success: function(response) {
                                 // Parse the JSON response and extract the summarized text
                                 var summarizedText = response.summarized_text;
@@ -159,7 +191,7 @@
                             },
                             dataType: 'json', // Expect JSON response
                             complete: function() {
-                                $('.loader').hide(); // Hide loader
+                                $('.progress').hide(); // Hide progress bar
                             }
                         });
                     } else {
@@ -167,7 +199,6 @@
                     }
                 });
             });
-            
             </script>
         </div>
     </div>
