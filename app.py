@@ -16,7 +16,7 @@ def summarize():
 
 def summarize_text(text):
     summarization_pipeline = pipeline("summarization", model="t5-small", tokenizer="t5-small")
-    summary = summarization_pipeline(text, max_length=300, min_length=2, do_sample=False)
+    summary = summarization_pipeline(text, max_length=40, min_length=2, do_sample=False)
     summarized_text = summary[0]['summary_text']
     return summarized_text
 
@@ -40,6 +40,7 @@ def login():
 
     return render_template('login.html', error=error)
 
+
 @app.route('/homepage/<name>')
 def homepage(name):
     return render_template('homepage.html', name=name)
@@ -51,6 +52,11 @@ def home():
 @app.route('/careers')
 def careers():
     return render_template('careers.html')
+
+
+@app.route('/aboutus')
+def aboutus():
+    return render_template('aboutus.html')
 
 @app.route('/logout')
 def logout():
