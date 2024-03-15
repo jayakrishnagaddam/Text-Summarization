@@ -2,4 +2,5 @@ flask
 gunicorn
 flask-pymongo
 transformers
-torch==1.10.0
+torch==1.9.0
+
