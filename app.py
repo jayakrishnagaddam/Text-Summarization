@@ -1,11 +1,16 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
 from flask_pymongo import PyMongo
+import random
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "1234"
 app.config["MONGO_URI"] = "mongodb+srv://2100090162:manigaddam@deepsheild.kzgpo9p.mongodb.net/textsummarizationsDB"
 mongo = PyMongo(app)
 
+@app.route('/send_otp', methods=['POST'])
+def send_otp():
+    # Add your logic to send OTP here
+    return jsonify({'message': 'OTP sent successfully'})
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -14,17 +19,45 @@ def index():
 def login():
     error = None
     if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
-        user_data = mongo.db.users.find_one({'username': username, 'password': password})
+        mobile_number = request.form.get('mobile_number')
+        otp_entered = request.form.get('otp')
+
+        # Fetch user from database based on mobile number
+        user_data = mongo.db.users.find_one({'mobile_number': mobile_number})
+
         if user_data:
-            firstname = user_data['first_name']
-            session['username'] = username
-            return redirect(url_for('homepage', name=firstname))  # Passing firstname as parameter
+            # Generate OTP
+            otp_generated = ''.join(random.choices('0123456789', k=6))
+            
+            # Save OTP to session
+            session['otp'] = otp_generated
+            
+            # Send OTP
+            send_otp(mobile_number, otp_generated)
+            
+            # Redirect to verify OTP
+            return redirect(url_for('verify_otp'))
         else:
-            error = 'Invalid username or password'
+            error = 'Mobile number not registered'
 
     return render_template('login.html', error=error)
+
+@app.route('/verify_otp', methods=['GET', 'POST'])
+def verify_otp():
+    if 'otp' not in session:
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        otp_entered = request.form.get('otp')
+        otp_generated = session['otp']
+        
+        if otp_entered == otp_generated:
+            # OTP is correct, login successful
+            return redirect(url_for('homepage', name="User"))  # Redirect to homepage
+        else:
+            flash('Invalid OTP. Please try again.', 'error')
+
+    return render_template('verify_otp.html')
 
 @app.route('/homepage/<name>')
 def homepage(name):
