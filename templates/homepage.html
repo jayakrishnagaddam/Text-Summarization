@@ -152,17 +152,18 @@
                         $('#summarizedText').val(''); // Clear previous result
                         $('.loader').show(); // Show loader
                         $.ajax({
-                            type: 'POST',
-                            url: '/summarize', // Flask endpoint
-                            data: { text: inputText },
-                            success: function(response) {
-                                console.log(response); // Log the response
-                                $('#summarizedText').val(response);
-                            },
-                            complete: function() {
-                                $('.loader').hide(); // Hide loader
-                            }
-                        });
+    type: 'POST',
+    url: '/summarize',
+    data: { text: inputText },
+    success: function(response) {
+        $('#summarizedText').val(response);
+    },
+    dataType: 'text', // Ensure response is treated as text
+    complete: function() {
+        $('.loader').hide();
+    }
+});
+
                     } else {
                         alert('Please enter some text to summarize.');
                     }
