@@ -1,60 +1,42 @@
-import pandas as pd
-import numpy as np
-from keras.preprocessing.text import Tokenizer
-from keras.preprocessing.sequence import pad_sequences
-from keras.models import Sequential
-from keras.layers import Embedding, LSTM, Dense, AdditiveAttention
+import gradio as gr
+from transformers import pipeline
 
-# Load data
-train_df = pd.read_csv("train1.csv")
-test_df = pd.read_csv("test1.csv")
-val_df = pd.read_csv("validation1.csv")
+def summarize_text(text):
+    # Load pre-trained summarization pipeline
+    summarization_pipeline = pipeline("summarization")
 
-# Concatenate train, test, and validation datasets for preprocessing
-full_df = pd.concat([train_df, test_df, val_df], ignore_index=True)
+    # Generate summary
+    summary = summarization_pipeline(text, max_length=100, min_length=20, do_sample=False)
 
-# Tokenization for input text
-tokenizer_input = Tokenizer()
-tokenizer_input.fit_on_texts(full_df['article'])
+    # Extract summarized text
+    summarized_text = summary[0]['summary_text']
 
-# Tokenization for target summaries
-tokenizer_target = Tokenizer()
-tokenizer_target.fit_on_texts(train_df['highlights'])
+    return summarized_text
 
-# Pad sequences for input text
-max_len_input = 121  # adjust this based on your text length distribution
-train_sequences_input = tokenizer_input.texts_to_sequences(train_df['article'])
-train_padded_input = pad_sequences(train_sequences_input, maxlen=max_len_input, padding='post')
+sample_text = """
+Bert: Bidirectional Encoder Representations from Transformers.
 
-# Pad sequences for target summaries
-max_len_target = max(len(seq) for seq in tokenizer_target.texts_to_sequences(train_df['highlights']))
-train_sequences_target = tokenizer_target.texts_to_sequences(train_df['highlights'])
-train_padded_target = pad_sequences(train_sequences_target, maxlen=max_len_target, padding='post')
+In recent years, natural language processing (NLP) has seen many remarkable advancements, 
+thanks to deep learning techniques. One such technique that has gained significant attention is
+ the Transformer architecture. Introduced by Vaswani et al. in 2017, the Transformer model has become the foundation
+   for various state-of-the-art NLP models.
+One of the groundbreaking applications of the Transformer architecture is BERT
+ (Bidirectional Encoder Representations from Transformers). Developed by researchers
+   at Google, BERT has set new benchmarks in a wide range of NLP tasks, including
+     text classification, named entity recognition, question answering, and more.
+BERT's key innovation lies in its ability 
+to capture bidirectional contextual information 
+of words in a sentence. Unlike traditional models that process text sequentially, BERT considers the entire context of a word by leveraging attention mechanisms. This bidirectional understanding enables BERT to grasp the nuances and complexities of natural language with remarkable accuracy.
+Furthermore, BERT is pre-trained on massive corpora of text data, allowing it to learn rich representations of language. Through pre-training tasks like masked language modeling and next sentence prediction, BERT acquires a deep understanding of semantic relationships within sentences.
 
-# Define model
-model = Sequential()
-model.add(Embedding(input_dim=len(tokenizer_input.word_index) + 1, output_dim=100, input_length=max_len_input))
-model.add(LSTM(100, return_sequences=True))
+Thanks to its effectiveness and versatility, BERT has been widely adopted in both academia and industry. Its open-source nature has led to the development of various BERT-based models tailored to specific NLP tasks and domains. Moreover, pre-trained BERT models are readily available, empowering researchers and developers to leverage state-of-the-art NLP capabilities without the need for extensive computational resources.
 
-# Output layer with the correct activation function
-# Output layer with the correct activation function
-model.add(Dense(len(tokenizer_target.word_index) + 1, activation='softmax'))
+In conclusion, BERT represents a significant milestone in the field of natural language processing. Its bidirectional architecture, coupled with extensive pre-training, has revolutionized the way we approach NLP tasks, enabling breakthroughs in understanding, generating, and processing human language.
+"""
 
-# Compile model with appropriate loss function
-model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
-# Train model
-model.fit(train_padded_input, train_padded_target, epochs=10, batch_size=64, validation_split=0.2)
+# Summarize the sample text
+summary_text = summarize_text(sample_text)
 
-def generate_summary(new_text):
-    new_text_sequence = tokenizer_input.texts_to_sequences([new_text])
-    new_text_padded = pad_sequences(new_text_sequence, maxlen=max_len_input, padding='post')
-    predicted_summary_probs = model.predict(new_text_padded)[0]  # Get predictions for the first sequence in the batch
-    predicted_summary_indices = [np.argmax(prob) for prob in predicted_summary_probs]
-    predicted_summary_words = [word for word, index in tokenizer_target.word_index.items() if index in predicted_summary_indices]
-    predicted_summary = ' '.join(predicted_summary_words)
-    return predicted_summary
-
-# Example usage
-new_text = "your text goes here..."
-predicted_summary = generate_summary(new_text)
-print(predicted_summary)
+# Print the summary
+print("Summary:")
+print(summary_text)
