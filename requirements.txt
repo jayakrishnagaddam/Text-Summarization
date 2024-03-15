@@ -6,6 +6,6 @@ pipeline
 keras
 pandas
 numpy
-pytorch
+torch
 Tensorflow
 PyTorch
