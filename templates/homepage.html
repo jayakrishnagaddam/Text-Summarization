@@ -132,7 +132,8 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="summarizedText">Summarized Text</label>
-                            <textarea class="form-control" id="summarizedText" rows="12" readonly aria-label="Summarized Text"></textarea>
+                            <textarea class="form-control" id="summarizedText" rows="12" 
+                            readonly aria-label="Summarized Text"></textarea>
                             <div class="loader mx-auto mt-2"></div>
                         </div>
                     </div>
@@ -152,25 +153,27 @@
                         $('#summarizedText').val(''); // Clear previous result
                         $('.loader').show(); // Show loader
                         $.ajax({
-    type: 'POST',
-    url: '/summarize',
-    data: { text: inputText },
-    success: function(response) {
-        $('#summarizedText').val(response);
-    },
-    dataType: 'text', // Ensure response is treated as text
-    complete: function() {
-        $('.loader').hide();
-    }
-});
-
+                            type: 'POST',
+                            url: '/summarize', // Flask endpoint
+                            data: { text: inputText },
+                            success: function(response) {
+                                // Parse the JSON response and extract the summarized text
+                                var summarizedText = response.summarized_text;
+                                // Set the extracted text to the summarizedText textarea
+                                $('#summarizedText').val(summarizedText);
+                            },
+                            dataType: 'json', // Expect JSON response
+                            complete: function() {
+                                $('.loader').hide(); // Hide loader
+                            }
+                        });
                     } else {
                         alert('Please enter some text to summarize.');
                     }
                 });
             });
+            
             </script>
-
         </div>
     </div>
 </body>
