@@ -3,3 +3,4 @@ gunicorn
 flask-pymongo
 transformers
 pipeline
+Tensorflow

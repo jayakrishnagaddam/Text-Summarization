@@ -17,7 +17,8 @@ def summarize():
 
 def summarize_text(text):
     # Load pre-trained summarization pipeline
-    summarization_pipeline = pipeline("summarization")
+    summarization_pipeline = pipeline("summarization", model="t5-small", tokenizer="t5-small")
+
 
     # Generate summary
     summary = summarization_pipeline(text, max_length=100, min_length=2, do_sample=False)
