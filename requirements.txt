@@ -3,5 +3,9 @@ gunicorn
 flask-pymongo
 transformers
 pipeline
+keras
+pandas
+numpy
+pytorch
 Tensorflow
 PyTorch

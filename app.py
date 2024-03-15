@@ -12,7 +12,6 @@ mongo = PyMongo(app)
 def summarize():
     data = request.form.get('text')
     summarized_text = summarize_text(data)
-    print(summarized_text)
     return jsonify(summarized_text=summarized_text)
 
 def summarize_text(text):
