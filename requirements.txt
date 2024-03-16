@@ -2,6 +2,4 @@ flask
 gunicorn
 flask-pymongo
 transformers
-torch==1.13.1
 tf-keras
-tensorflow==2.16.1
