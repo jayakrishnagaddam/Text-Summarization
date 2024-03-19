@@ -18,7 +18,7 @@
       position: fixed; 
       top: 0; 
       left: 0; 
-      filter: blur(3px);
+      filter: blur(5px);
       width: 100%; 
       height: 100%;
       object-fit: cover;
@@ -29,6 +29,10 @@
       z-index: 1; 
   
     }
+    #aid{
+      text-decoration: none;
+      color: black;
+    }
     .th{
       background-color: transparent !important;
     }
@@ -36,6 +40,9 @@
       width: 60%;
       margin: 0 auto;
     }
+    .upgrade-item {
+            border-bottom: 2px solid #ccc;
+        }
   </style>
 </head>
 <body>
@@ -44,7 +51,18 @@
     <div class="bg-white text-lg-start mt-0">
         <div class="row lead">
           <div class="upgrade-item mt-4 mb-4 ">
-          <h3 class="lead text-center" style="font-size: 30px;"><b>Welcome Home...</b></h3>
+            <div class="upgrade-item">
+              <ul class="row" style="position: relative; left:4%;">
+                <li id="aid" class="col">Text Summarization</li>
+                <li id="aid" class="col">Extraction</li>
+                <li id="aid" class="col">Automation</li>
+                <li id="aid" class="col">Efficiency</li>
+                <li id="aid" class="col">Comprehension</li>
+                <li id="aid" class="col">Bullet Points</li>
+                
+            </ul>
+            
+            </div>
           </div>
           <div class="col">
           
@@ -80,36 +98,89 @@
               </thead>
               <tbody>
                 <tr>
-                  <td style="background-color: transparent;">Text Summarization</td>
-                  <td style="background-color: transparent;">Transformers library & Pipeline</td>
+                    <td style="background-color: transparent; color: black; font-weight: bold;">Text Summarization</td>
+                    <td style="background-color: transparent; color: black; font-weight: bold;">Transformers library & Pipeline</td>
                 </tr>
                 
                 <tr>
-                  <td style="background-color: transparent;">Backend Framework</td>
-                  <td style="background-color: transparent;">Flask (Python microframework)</td>
+                    <td style="background-color: transparent; color: black; font-weight: bold;">Backend Framework</td>
+                    <td style="background-color: transparent; color: black; font-weight: bold;">Flask (Python microframework)</td>
                 </tr>
                 <tr>
-                  <td style="background-color: transparent;">Templating Engine</td>
-                  <td style="background-color: transparent;">Jinja2</td>
+                    <td style="background-color: transparent; color: black; font-weight: bold;">Templating Engine</td>
+                    <td style="background-color: transparent; color: black; font-weight: bold;">Jinja2</td>
                 </tr>
                 <tr>
-                  <td style="background-color: transparent;">Database</td>
-                  <td style="background-color: transparent;">MongoDB (NoSQL document database)</td>
+                    <td style="background-color: transparent; color: black; font-weight: bold;">Database</td>
+                    <td style="background-color: transparent; color: black; font-weight: bold;">MongoDB (NoSQL document database)</td>
                 </tr>
                 <tr>
-                  <td style="background-color: transparent;">Object Document Mapper (ODM)</td>
-                  <td style="background-color: transparent;">Flask-PyMongo</td>
+                    <td style="background-color: transparent; color: black; font-weight: bold;">Object Document Mapper (ODM)</td>
+                    <td style="background-color: transparent; color: black; font-weight: bold;">Flask-PyMongo</td>
                 </tr>
                 
                 <tr>
-                  <td style="background-color: transparent;">Session Management</td>
-                  <td style="background-color: transparent;">Flask-Session</td>
+                    <td style="background-color: transparent; color: black; font-weight: bold;">Session Management</td>
+                    <td style="background-color: transparent; color: black; font-weight: bold;">Flask-Session</td>
                 </tr>
-              </tbody>
+            </tbody>
+            
+            
             </table>
           </div>
         </div>
       </div>
+      <div class="bg-white text-dark text-lg-start mt-0 p-4 rounded-lg shadow">
+        <h1 class="text-center  fw-bold mb-4">Research Bulletin</h1>
+        <p class="lead mb-4">Stay ahead of the curve with the latest breakthroughs and discoveries.</p>
+      
+        <div class="row gx-5">
+          <div class="col-md-6">
+            <h2 class="h3 mb-4 text-primary">Featured Research</h2>
+            <ul class="list-unstyled">
+              <li class="d-flex mb-4 align-items-center">
+                <i class="fas fa-star text-primary me-3"></i>
+                <div>
+                  <h5 class="mb-1">Article Title 1</h5>
+                  <p class="text-dark">Summary or key insights from the research. <a href="#" class="text-primary text-decoration-none">Read More</a></p>
+                </div>
+              </li>
+              <li class="d-flex mb-4 align-items-center">
+                <i class="fas fa-star text-primary me-3"></i>
+                <div>
+                  <h5 class="mb-1">Article Title 2</h5>
+                  <p class="text-dark">Summary or key insights from the research. <a href="#" class="text-primary text-decoration-none">Read More</a></p>
+                </div>
+              </li>
+            </ul>
+          </div>
+      
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-sm-6 mb-4">
+                <h2 class="h4 mb-2 text-primary">Categories</h2>
+                <ul class="list-unstyled text-dark">
+                  <li class="mb-2">Algorithms</li>
+                  <li class="mb-2">Applications</li>
+                  <li class="mb-2">Evaluation Methods</li>
+                  <li class="mb-2">Future Directions</li>
+                </ul>
+              </div>
+              <div class="col-sm-6 mb-4">
+                <h2 class="h4 mb-2 text-primary">Recent Updates</h2>
+                <ul class="list-unstyled text-dark">
+                  <li class="mb-2"><a href="#" class="text-decoration-none text-primary">Article Title 1</a></li>
+                  <li class="mb-2"><a href="#" class="text-decoration-none text-primary">Article Title 2</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <a href="#" class="btn btn-lg btn-outline-primary mt-4">Explore More Research</a>
+    </div>
+    
+      
       
   </div>
   {% include 'footer.html' %}
