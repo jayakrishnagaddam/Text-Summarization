@@ -63,11 +63,18 @@
     .upgrade-item {
       border-bottom: 2px solid #ccc;
     }
+    .btn-fixed {
+      position: fixed;
+      top: 85%;
+      left: 43%;
+      z-index: 9999;
+    }
   </style>
 </head>
 <body>
   <img id="image" src="static/homebg.jpg" alt="">
   <div class="content">
+    <a href="#" class="btn btn-warning btn-fixed text-center">Enter Text Summarizer</a>
     <div class="bg-white text-lg-start mt-0">
       <div class="row lead">
         <div class="upgrade-item mt-4 mb-4 ">
@@ -86,11 +93,11 @@
         </div>
         <div class="col">
         
-          <p style="position: relative; top: 35%; left: 20%;"><b>What is Text Summarizer?</b></p>
+          <p style="font-size:30px; position: relative; top: 35%; left: 20%;"><b>What is Text Summarizer?</b></p>
 
         </div>
-        <div class="col text-center" style="position: relative; right: 5%;">
-          <p>A text summarizer is like a Cliff Notes for any kind of writing. It takes lengthy articles, reports, or
+        <div class="col text-center" style="font-size: 22px; position: relative; right: 5%;">
+          <p>📌 A text summarizer is like a Cliff Notes for any kind of writing. It takes lengthy articles, reports, or
              passages and creates a shorter version that captures the essential points.  Imagine it as a helpful friend
               who quickly explains the main ideas without you needing to read everything yourself. This can save you 
               time, improve your comprehension of complex topics, and be a lifesaver when you're sifting through a lot 
@@ -102,6 +109,17 @@
       </div>
      
     </div>
+    <div class="bg-light text-dark text-lg-start mt-0 p-4 rounded-lg shadow">
+      <h2 class="text-center fw-bold mb-4">Primary Technicalities</h2>
+    <div class="image-row mb-4">
+      <img src="static/pipeline.png" alt="Pipeline" class="rounded">
+      <img src="static/transformers.png" alt="Transformers" class="rounded">
+      <img src="static/flask.png" alt="Flask" class="rounded">
+      <img src="static/MongoDB.jpg" alt="MongoDB" class="rounded">
+    </div>
+    </div>
+
+    
     <div class="row mt-4 mb-4 technical-stack"> 
       <div class="col"></div>
       <div class="col" style="position: relative; right: 23%;">
@@ -150,15 +168,36 @@
         </div>
       </div>
     </div>
-    <div class="bg-white text-dark text-lg-start mt-0 p-4 rounded-lg shadow">
-      <h2 class="text-center fw-bold mb-4">Primary Technicalities</h2>
-    <div class="image-row mb-4">
-      <img src="static\pipeline.png" alt="Pipeline" class="rounded">
-      <img src="static\transformers.png" alt="Transformers" class="rounded">
-      <img src="static\flask.png" alt="Flask" class="rounded">
-      <img src="static\MongoDB.jpg" alt="MongoDB" class="rounded">
-    </div>
-    </div>
+    <div class="row bg-white text-dark text-lg-start mt-0 p-4 rounded-lg shadow">
+
+      <script>
+          document.querySelector(".col.lead b").textContent = "Unlock the Key Ideas: Unveiling Our Text Summarization Process";
+      </script>
+    
+      <div class="col lead">
+          <p style="font-size: 30px; position: relative; top: 35%; left: 10%;">
+              <i class="lead fas fa-lightbulb"></i><b>Unlock the Key Ideas: Unveiling Our Text Summarization Process</b>
+          </p>
+      </div>
+    
+      <div class="lead col text-center" style="font-size: 22px; position: relative; right: 5%;">
+        <p style="margin-bottom: 20px;">
+               Condense lengthy articles, blog posts, 
+              or documents into digestible summaries in seconds. Our advanced tool, powered by Natural Language Processing
+               (NLP), extracts the essence of the text while preserving crucial information.
+               You provide the text you want to summarize.We remove unnecessary elements like punctuation and formatting to 
+               ensure the summarization model focuses on the core content.he final summarized text is presented in a user-friendly format, ready for quick comprehension.
+              
+              
+          </p>
+          
+          <p style="margin-top: 20px;">
+              In summary, our text summarization tool empowers you to process information swiftly and effectively, allowing you to grasp complex content with ease.
+          </p>
+      </div>
+  </div>
+  
+
     <div class="bg-light text-dark text-lg-start mt-0 p-4 rounded-lg shadow">
       <h1 class="text-center  fw-bold mb-4">Research Bulletin</h1>
       <p class="lead mb-4">Stay ahead of the curve with the latest breakthroughs and discoveries.</p>
