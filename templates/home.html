@@ -5,35 +5,58 @@
   {% include 'bootstrap.html' %}
   <style>
     body {
-      margin: 0; 
+      margin: 0;
       padding: 0;
       height: 100%;
       font-family: Arial, sans-serif;
+      overflow-x: hidden; /* To prevent horizontal scrolling */
     }
-  .technical-stack {
-    background-color: transparent !important;
+    
+  .image-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Adjust the gap between images */
+    margin-top: 20px; /* Add margin to the top */
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
   }
 
+  .image-row img {
+    width: 300px; /* Adjust the width of the images */
+    height: auto; /* Maintain aspect ratio */
+    border: 2px solid #ddd; /* Add border */
+    border-radius: 8px; /* Rounded corners */
+    transition: transform 0.3s ease; /* Add smooth hover effect */
+  }
+
+  .image-row img:hover {
+    transform: scale(1.1); /* Increase size on hover */
+  }
+
+
     #image {
-      position: fixed; 
-      top: 0; 
-      left: 0; 
+      position: fixed;
+      top: 0;
+      left: 0;
       filter: blur(5px);
-      width: 100%; 
+      width: 100%;
       height: 100%;
       object-fit: cover;
       z-index: -1;
     }
     .content {
-      position: relative; 
-      z-index: 1; 
-  
+      padding:0; /* Add padding to the sides */
+      box-sizing: border-box; /* Ensure padding doesn't affect overall width */
     }
-    #aid{
+    .technical-stack {
+      background-color: transparent !important;
+    }
+    
+    #aid {
       text-decoration: none;
       color: black;
     }
-    .th{
+    .th {
       background-color: transparent !important;
     }
     .table {
@@ -41,147 +64,152 @@
       margin: 0 auto;
     }
     .upgrade-item {
-            border-bottom: 2px solid #ccc;
-        }
+      border-bottom: 2px solid #ccc;
+    }
   </style>
 </head>
 <body>
   <img id="image" src="static/homebg.jpg" alt="">
   <div class="content">
     <div class="bg-white text-lg-start mt-0">
-        <div class="row lead">
-          <div class="upgrade-item mt-4 mb-4 ">
-            <div class="upgrade-item">
-              <ul class="row" style="position: relative; left:4%;">
-                <li id="aid" class="col">Text Summarization</li>
-                <li id="aid" class="col">Extraction</li>
-                <li id="aid" class="col">Automation</li>
-                <li id="aid" class="col">Efficiency</li>
-                <li id="aid" class="col">Comprehension</li>
-                <li id="aid" class="col">Bullet Points</li>
-                
-            </ul>
-            
-            </div>
-          </div>
-          <div class="col">
+      <div class="row lead">
+        <div class="upgrade-item mt-4 mb-4 ">
+          <div class="upgrade-item">
+            <ul class="row" style="position: relative; left:4%;">
+              <li id="aid" class="col">Text Summarization</li>
+              <li id="aid" class="col">Extraction</li>
+              <li id="aid" class="col">Automation</li>
+              <li id="aid" class="col">Efficiency</li>
+              <li id="aid" class="col">Comprehension</li>
+              <li id="aid" class="col">Bullet Points</li>
+              
+          </ul>
           
-            <p style="position: relative; top: 35%; left: 20%;"><b>What is Text Summarizer?</b></p>
-
-          </div>
-          <div class="col text-center">
-            <p>A text summarizer is like a Cliff Notes for any kind of writing. It takes lengthy articles, reports, or
-               passages and creates a shorter version that captures the essential points.  Imagine it as a helpful friend
-                who quickly explains the main ideas without you needing to read everything yourself. This can save you 
-                time, improve your comprehension of complex topics, and be a lifesaver when you're sifting through a lot 
-                of information for research.  These summarizers are often online and use clever computer programs to 
-                figure out what's most important in the text.</p>
-
-          </div>
-
-        </div>
-       
-      </div>
-      <div class="row mt-4 mb-4 technical-stack"> 
-        <div class="col"></div>
-        <div class="col" style="position: relative; right: 23%;">
-          <h2 class="lead" style="font-size: 30px;">
-            <b>TECHNICAL STACK</b>
-          </h2>
-          <div class="table-responsive">
-            <table class="table table-bordered table-hover lead">
-              <thead>
-                <tr>
-                  <th class="lead" style="background-color: transparent;"><b>Component</b></th>
-                  <th class="lead" style="background-color: transparent;"><b>Description</b></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                    <td style="background-color: transparent; color: black; font-weight: bold;">Text Summarization</td>
-                    <td style="background-color: transparent; color: black; font-weight: bold;">Transformers library & Pipeline</td>
-                </tr>
-                
-                <tr>
-                    <td style="background-color: transparent; color: black; font-weight: bold;">Backend Framework</td>
-                    <td style="background-color: transparent; color: black; font-weight: bold;">Flask (Python microframework)</td>
-                </tr>
-                <tr>
-                    <td style="background-color: transparent; color: black; font-weight: bold;">Templating Engine</td>
-                    <td style="background-color: transparent; color: black; font-weight: bold;">Jinja2</td>
-                </tr>
-                <tr>
-                    <td style="background-color: transparent; color: black; font-weight: bold;">Database</td>
-                    <td style="background-color: transparent; color: black; font-weight: bold;">MongoDB (NoSQL document database)</td>
-                </tr>
-                <tr>
-                    <td style="background-color: transparent; color: black; font-weight: bold;">Object Document Mapper (ODM)</td>
-                    <td style="background-color: transparent; color: black; font-weight: bold;">Flask-PyMongo</td>
-                </tr>
-                
-                <tr>
-                    <td style="background-color: transparent; color: black; font-weight: bold;">Session Management</td>
-                    <td style="background-color: transparent; color: black; font-weight: bold;">Flask-Session</td>
-                </tr>
-            </tbody>
-            
-            
-            </table>
           </div>
         </div>
+        <div class="col">
+        
+          <p style="position: relative; top: 35%; left: 20%;"><b>What is Text Summarizer?</b></p>
+
+        </div>
+        <div class="col text-center">
+          <p>A text summarizer is like a Cliff Notes for any kind of writing. It takes lengthy articles, reports, or
+             passages and creates a shorter version that captures the essential points.  Imagine it as a helpful friend
+              who quickly explains the main ideas without you needing to read everything yourself. This can save you 
+              time, improve your comprehension of complex topics, and be a lifesaver when you're sifting through a lot 
+              of information for research.  These summarizers are often online and use clever computer programs to 
+              figure out what's most important in the text.</p>
+
+        </div>
+
       </div>
-      <div class="bg-white text-dark text-lg-start mt-0 p-4 rounded-lg shadow">
-        <h1 class="text-center  fw-bold mb-4">Research Bulletin</h1>
-        <p class="lead mb-4">Stay ahead of the curve with the latest breakthroughs and discoveries.</p>
-      
-        <div class="row gx-5">
-          <div class="col-md-6">
-            <h2 class="h3 mb-4 text-primary">Featured Research</h2>
-            <ul class="list-unstyled">
-              <li class="d-flex mb-4 align-items-center">
-                <i class="fas fa-star text-primary me-3"></i>
-                <div>
-                  <h5 class="mb-1">Article Title 1</h5>
-                  <p class="text-dark">Summary or key insights from the research. <a href="#" class="text-primary text-decoration-none">Read More</a></p>
-                </div>
-              </li>
-              <li class="d-flex mb-4 align-items-center">
-                <i class="fas fa-star text-primary me-3"></i>
-                <div>
-                  <h5 class="mb-1">Article Title 2</h5>
-                  <p class="text-dark">Summary or key insights from the research. <a href="#" class="text-primary text-decoration-none">Read More</a></p>
-                </div>
-              </li>
-            </ul>
-          </div>
-      
-          <div class="col-md-6">
-            <div class="row">
-              <div class="col-sm-6 mb-4">
-                <h2 class="h4 mb-2 text-primary">Categories</h2>
-                <ul class="list-unstyled text-dark">
-                  <li class="mb-2">Algorithms</li>
-                  <li class="mb-2">Applications</li>
-                  <li class="mb-2">Evaluation Methods</li>
-                  <li class="mb-2">Future Directions</li>
-                </ul>
+     
+    </div>
+    <div class="row mt-4 mb-4 technical-stack"> 
+      <div class="col"></div>
+      <div class="col" style="position: relative; right: 23%;">
+        <h2 class="lead" style="font-size: 30px;">
+          <b>TECHNICAL STACK</b>
+        </h2>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover lead">
+            <thead>
+              <tr>
+                <th class="lead" style="background-color: transparent;"><b>Component</b></th>
+                <th class="lead" style="background-color: transparent;"><b>Description</b></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                  <td style="background-color: transparent; color: black; font-weight: bold;">Text Summarization</td>
+                  <td style="background-color: transparent; color: black; font-weight: bold;">Transformers library & Pipeline</td>
+              </tr>
+              
+              <tr>
+                  <td style="background-color: transparent; color: black; font-weight: bold;">Backend Framework</td>
+                  <td style="background-color: transparent; color: black; font-weight: bold;">Flask (Python microframework)</td>
+              </tr>
+              <tr>
+                  <td style="background-color: transparent; color: black; font-weight: bold;">Templating Engine</td>
+                  <td style="background-color: transparent; color: black; font-weight: bold;">Jinja2</td>
+              </tr>
+              <tr>
+                  <td style="background-color: transparent; color: black; font-weight: bold;">Database</td>
+                  <td style="background-color: transparent; color: black; font-weight: bold;">MongoDB (NoSQL document database)</td>
+              </tr>
+              <tr>
+                  <td style="background-color: transparent; color: black; font-weight: bold;">Object Document Mapper (ODM)</td>
+                  <td style="background-color: transparent; color: black; font-weight: bold;">Flask-PyMongo</td>
+              </tr>
+              
+              <tr>
+                  <td style="background-color: transparent; color: black; font-weight: bold;">Session Management</td>
+                  <td style="background-color: transparent; color: black; font-weight: bold;">Flask-Session</td>
+              </tr>
+          </tbody>
+          
+          
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white text-dark text-lg-start mt-0 p-4 rounded-lg shadow">
+      <h1 class="text-center  fw-bold mb-4">Research Bulletin</h1>
+      <p class="lead mb-4">Stay ahead of the curve with the latest breakthroughs and discoveries.</p>
+    
+      <div class="row gx-5">
+        <div class="col-md-6">
+          <h2 class="h3 mb-4 text-primary">Featured Research</h2>
+          <ul class="list-unstyled">
+            <li class="d-flex mb-4 align-items-center">
+              <i class="fas fa-star text-primary me-3"></i>
+              <div>
+                <h5 class="mb-1">Article Title 1</h5>
+                <p class="text-dark">Summary or key insights from the research. <a href="#" class="text-primary text-decoration-none">Read More</a></p>
               </div>
-              <div class="col-sm-6 mb-4">
-                <h2 class="h4 mb-2 text-primary">Recent Updates</h2>
-                <ul class="list-unstyled text-dark">
-                  <li class="mb-2"><a href="#" class="text-decoration-none text-primary">Article Title 1</a></li>
-                  <li class="mb-2"><a href="#" class="text-decoration-none text-primary">Article Title 2</a></li>
-                </ul>
+            </li>
+            <li class="d-flex mb-4 align-items-center">
+              <i class="fas fa-star text-primary me-3"></i>
+              <div>
+                <h5 class="mb-1">Article Title 2</h5>
+                <p class="text-dark">Summary or key insights from the research. <a href="#" class="text-primary text-decoration-none">Read More</a></p>
               </div>
+            </li>
+          </ul>
+        </div>
+    
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-sm-6 mb-4">
+              <h2 class="h4 mb-2 text-primary">Categories</h2>
+              <ul class="list-unstyled text-dark">
+                <li class="mb-2">Algorithms</li>
+                <li class="mb-2">Applications</li>
+                <li class="mb-2">Evaluation Methods</li>
+                <li class="mb-2">Future Directions</li>
+              </ul>
+            </div>
+            <div class="col-sm-6 mb-4">
+              <h2 class="h4 mb-2 text-primary">Recent Updates</h2>
+              <ul class="list-unstyled text-dark">
+                <li class="mb-2"><a href="#" class="text-decoration-none text-primary">Article Title 1</a></li>
+                <li class="mb-2"><a href="#" class="text-decoration-none text-primary">Article Title 2</a></li>
+              </ul>
             </div>
           </div>
         </div>
-      
-        <a href="#" class="btn btn-lg btn-outline-primary mt-4">Explore More Research</a>
-    </div>
+      </div>
     
-      
-      
+      <a href="#" class="btn btn-lg btn-outline-primary mt-4">Explore More Research</a>
+  </div>
+  <div class="image-row mb-4">
+    <img src="static\pipeline.png" alt="Pipeline" class="rounded">
+    <img src="static\transformers.png" alt="Transformers" class="rounded">
+    <img src="static\flask.png" alt="Flask" class="rounded">
+    <img src="static\MongoDB.jpg" alt="MongoDB" class="rounded">
+  </div>
+  
+  
   </div>
   {% include 'footer.html' %}
 </body>
