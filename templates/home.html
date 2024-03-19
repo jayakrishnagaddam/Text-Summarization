@@ -11,7 +11,7 @@
       font-family: Arial, sans-serif;
     }
   .technical-stack {
-    background-color: transparent;
+    background-color: transparent !important;
   }
 
     #image {
@@ -28,6 +28,9 @@
       position: relative; 
       z-index: 1; 
   
+    }
+    .th{
+      background-color: transparent !important;
     }
     .table {
       width: 60%;
@@ -63,47 +66,44 @@
       </div>
       <div class="row mt-4 mb-4 technical-stack"> 
         <div class="col"></div>
-        <div class="col">
+        <div class="col" style="position: relative; right: 23%;">
           <h2 class="lead" style="font-size: 30px;">
-            <b>Technical Stack</b>
+            <b>TECHNICAL STACK</b>
           </h2>
           <div class="table-responsive">
             <table class="table table-bordered table-hover lead">
               <thead>
                 <tr>
-                  <th>Component</th>
-                  <th>Description</th>
+                  <th class="lead" style="background-color: transparent;"><b>Component</b></th>
+                  <th class="lead" style="background-color: transparent;"><b>Description</b></th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Text Summarization</td>
-                  <td>Transformers library</td>
-                </tr>
-                <tr>
-                  <td>Text Summarization</td>
-                  <td>Pipeline</td>
-                </tr>
-                <tr>
-                  <td>Backend Framework</td>
-                  <td>Flask (Python microframework)</td>
-                </tr>
-                <tr>
-                  <td>Templating Engine</td>
-                  <td>Jinja2</td>
-                </tr>
-                <tr>
-                  <td>Database</td>
-                  <td>MongoDB (NoSQL document database)</td>
-                </tr>
-                <tr>
-                  <td>Object Document Mapper (ODM)</td>
-                  <td>Flask-PyMongo</td>
+                  <td style="background-color: transparent;">Text Summarization</td>
+                  <td style="background-color: transparent;">Transformers library & Pipeline</td>
                 </tr>
                 
                 <tr>
-                  <td>Session Management</td>
-                  <td>Flask-Session</td>
+                  <td style="background-color: transparent;">Backend Framework</td>
+                  <td style="background-color: transparent;">Flask (Python microframework)</td>
+                </tr>
+                <tr>
+                  <td style="background-color: transparent;">Templating Engine</td>
+                  <td style="background-color: transparent;">Jinja2</td>
+                </tr>
+                <tr>
+                  <td style="background-color: transparent;">Database</td>
+                  <td style="background-color: transparent;">MongoDB (NoSQL document database)</td>
+                </tr>
+                <tr>
+                  <td style="background-color: transparent;">Object Document Mapper (ODM)</td>
+                  <td style="background-color: transparent;">Flask-PyMongo</td>
+                </tr>
+                
+                <tr>
+                  <td style="background-color: transparent;">Session Management</td>
+                  <td style="background-color: transparent;">Flask-Session</td>
                 </tr>
               </tbody>
             </table>
