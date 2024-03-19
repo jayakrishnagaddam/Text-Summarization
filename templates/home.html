@@ -1,45 +1,117 @@
-<doctype html>
-  <html>
+<!DOCTYPE html>
+<html>
 <head>
-<title>Home</title>
-{%include 'bootstrap.html'%}
-<style>
-  .table{
-        width: 60%;
-        padding-top: 4%;
-        position: relative;
-        left: 20%;
+  <title>Home</title>
+  {% include 'bootstrap.html' %}
+  <style>
+    body {
+      margin: 0; 
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
     }
-</style>
+  .technical-stack {
+    background-color: transparent;
+  }
+
+    #image {
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      filter: blur(3px);
+      width: 100%; 
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .content {
+      position: relative; 
+      z-index: 1; 
+  
+    }
+    .table {
+      width: 60%;
+      margin: 0 auto;
+    }
+  </style>
 </head>
-<body class="container">
-<h2 class="text-center mt-4">Summarize any text with a click of a button
-</h2>
-<p class="text-center"> QuillBot's Summarizer can condense articles, papers, or documents down to the key points
-     instantly. Our AI uses natural language processing to locate critical information while
-      maintaining the original context.</p>
-      <table class="mt-4 table table-striped table-dark">
-        <tbody>
-          <tr>
-            <th scope="row">AI-Powered</th>
-            <td>Quickly extracts key points</td>
-          </tr>
-          <tr>
-            <th scope="row">Summarizes</th>
-            <td>Essays, papers & documents</td>
-           
-          </tr>
-          <tr>
-            <th scope="row">AI Models</th>
-            <td>Bullet Points & Paragraph</td>
-            
-          </tr>
-          <tr>
-            <th scope="row">100% Free</th>
-            <td>Unlimited summarization</td>
-            
-          </tr>
-        </tbody>
-      </table>
-    </body>
-      </html>
+<body>
+  <img id="image" src="static/homebg.jpg" alt="">
+  <div class="content">
+    <div class="bg-white text-lg-start mt-0">
+        <div class="row lead">
+          <div class="upgrade-item mt-4 mb-4 ">
+          <h3 class="lead text-center" style="font-size: 30px;"><b>Welcome Home...</b></h3>
+          </div>
+          <div class="col">
+          
+            <p style="position: relative; top: 35%; left: 20%;"><b>What is Text Summarizer?</b></p>
+
+          </div>
+          <div class="col text-center">
+            <p>A text summarizer is like a Cliff Notes for any kind of writing. It takes lengthy articles, reports, or
+               passages and creates a shorter version that captures the essential points.  Imagine it as a helpful friend
+                who quickly explains the main ideas without you needing to read everything yourself. This can save you 
+                time, improve your comprehension of complex topics, and be a lifesaver when you're sifting through a lot 
+                of information for research.  These summarizers are often online and use clever computer programs to 
+                figure out what's most important in the text.</p>
+
+          </div>
+
+        </div>
+       
+      </div>
+      <div class="row mt-4 mb-4 technical-stack"> 
+        <div class="col"></div>
+        <div class="col">
+          <h2 class="lead" style="font-size: 30px;">
+            <b>Technical Stack</b>
+          </h2>
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover lead">
+              <thead>
+                <tr>
+                  <th>Component</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Text Summarization</td>
+                  <td>Transformers library</td>
+                </tr>
+                <tr>
+                  <td>Text Summarization</td>
+                  <td>Pipeline</td>
+                </tr>
+                <tr>
+                  <td>Backend Framework</td>
+                  <td>Flask (Python microframework)</td>
+                </tr>
+                <tr>
+                  <td>Templating Engine</td>
+                  <td>Jinja2</td>
+                </tr>
+                <tr>
+                  <td>Database</td>
+                  <td>MongoDB (NoSQL document database)</td>
+                </tr>
+                <tr>
+                  <td>Object Document Mapper (ODM)</td>
+                  <td>Flask-PyMongo</td>
+                </tr>
+                
+                <tr>
+                  <td>Session Management</td>
+                  <td>Flask-Session</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+  </div>
+  {% include 'footer.html' %}
+</body>
+</html>
