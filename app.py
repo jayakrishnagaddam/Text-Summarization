@@ -11,6 +11,7 @@ mongo = PyMongo(app)
 def projects():
     return render_template('projects.html')
 
+
 @app.route('/summarize', methods=['POST'])
 def summarize():
     data = request.form.get('text')
@@ -19,14 +20,14 @@ def summarize():
 
 def summarize_text(text):
     summarization_pipeline = pipeline("summarization", model="t5-small", tokenizer="t5-small")
-    summary = summarization_pipeline(text, max_length=40, min_length=2, do_sample=False)
-    summarized_text = summary[0]['summary_text']
-    return summarized_text
+    summary = summarization_pipeline(text, max_length=1000, min_length=2, do_sample=False)  # Increased max_length
+    summarized_sentences = summary[0]['summary_text'].split('. ')  # Split sentences by '. '
+    bullet_points = '\n- '.join(summarized_sentences)  # Join sentences with bullet points
+    return bullet_points
 
 @app.route('/')
 def index():
     return render_template("index.html")
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
@@ -37,21 +38,28 @@ def login():
         if user_data:
             firstname = user_data['first_name']
             session['username'] = username
-            name=firstname
+            session['name'] = firstname  # Storing name in session
             return redirect(url_for('home'))
         else:
             error = 'Invalid username or password'
 
     return render_template('login.html', error=error)
 
+@app.route('/home')
+def home():
+    if 'username' in session:
+        # Retrieve name from session
+        name = session.get('name')
+        return render_template('home.html', name=name)
+    else:
+        return redirect(url_for('login'))
+
 
 @app.route('/homepage')
 def homepage():
-    return render_template('homepage.html')
-
-@app.route('/home')
-def home():
-    return render_template('home.html')
+    # Retrieve name from session
+    name = session.get('name')
+    return render_template('homepage.html', name=name)
 
 @app.route('/careers')
 def careers():

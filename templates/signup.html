@@ -20,22 +20,22 @@
         <form name="signup_form" method='POST'>
             <h1 class="text-center lead mb-4" style="font-size: 32px; text-color:rgb(27, 23, 23);">CREATE YOUR ACCOUNT</h1>
             <div class="form-outline mb-4">
-                <input type="text" name="firstname" class="form-control form-control-lg" placeholder="Enter Your First Name" />
+                <input type="text" name="firstname" class="form-control form-control-lg" placeholder="Enter Your First Name" required />
                 <label class="form-label" name="firstname" for="form1Example13">First Name</label>
             </div>
             <div class="form-outline mb-4">
-                <input type="text" name="lastname" class="form-control form-control-lg" placeholder="Enter Your Last Name" />
+                <input type="text" name="lastname" class="form-control form-control-lg" placeholder="Enter Your Last Name" required/>
                 <label class="form-label" name="lastname" for="form1Example13">Last Name</label>
             </div>
             <div class="form-outline mb-4">
-                <input type="text" name="username" class="form-control form-control-lg" placeholder="Provide Username" />
+                <input type="text" name="username" class="form-control form-control-lg" placeholder="Provide Username" required/>
                 <label class="form-label" name="username" for="form1Example13">Username</label>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
                 <input type="password" name="password" class="form-control form-control-lg"
-                    placeholder="Enter Strong Password" />
+                    placeholder="Enter Strong Password" required/>
                 <label class="form-label" name="password" for="form1Example23">Password</label>
             </div>
             <button type="submit" class="btn btn-dark btn-lg btn-block" id="signup-btn">Create Account</button>
