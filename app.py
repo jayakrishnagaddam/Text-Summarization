@@ -37,16 +37,17 @@ def login():
         if user_data:
             firstname = user_data['first_name']
             session['username'] = username
-            return redirect(url_for('homepage', name=firstname))
+            name=firstname
+            return redirect(url_for('home'))
         else:
             error = 'Invalid username or password'
 
     return render_template('login.html', error=error)
 
 
-@app.route('/homepage/<name>')
-def homepage(name):
-    return render_template('homepage.html', name=name)
+@app.route('/homepage')
+def homepage():
+    return render_template('homepage.html')
 
 @app.route('/home')
 def home():
