@@ -69,20 +69,34 @@
       left: 43%;
       z-index: 9999;
     }
+    #b1{
+      position: fixed;
+      top: 86%;
+      left: 38.5%;
+      z-index: 9999;
+    }
+    #b3{
+      position: fixed;
+      top: 86%;
+      left: 56%;
+      z-index: 9999;
+    }
   </style>
 </head>
 <body>
   <img id="image" src="static/homebg.jpg" alt="">
   <div class="content">
-    
+    <a id="b1" href="{{url_for('contactus') }}" class="btn btn-primary btn-sm btn-fixed text-center">Help?</a>
     <a href="{{ url_for('homepage', name=name) }}" class="btn btn-warning btn-fixed text-center">Enter Text Summarizer</a>
+    <a id="b3" href="{{ url_for('logout') }}" class="btn btn-primary btn-fixed btn-sm text-center">Log out</a>
+   
     <div class="bg-white text-lg-start mt-0">
       <div class="row lead">
         <div class="upgrade-item mt-4 mb-4 ">
           <div class="upgrade-item">
             <ul class="row" style="position: relative; left:4%;">
               <li id="aid" class="col">Text Summarization</li>
-              <li id="aid" class="col">Extraction</li>
+              <li style="position: relative;left: 2%;" id="aid" class="col">Extraction</li>
               <li id="aid" class="col">Automation</li>
               <li id="aid" class="col">Efficiency</li>
               <li id="aid" class="col">Comprehension</li>
